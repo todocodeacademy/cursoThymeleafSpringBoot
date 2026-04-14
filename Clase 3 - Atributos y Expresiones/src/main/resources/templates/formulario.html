@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de personas</title>
+</head>
+<body>
+    <h2>Ingreso de Datos</h2>
+    <form th:action="@{/procesar}" method="post">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required> <br><br>
+        <label>Apellido:</label>
+        <input type="text" name="apellido" required> <br><br>
+        <label>Edad:</label>
+        <input type="text" name="edad" required> <br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+</head>
+<body>
+    <h2>Datos procesados</h2>
+
+    <table>
+    <tr>
+        <th>Nombre Completo</th>
+        <th>Edad</th>
+        <th>Estado Edad</th>
+    </tr>
+    <tr>
+        <td th:text="${nombreCompleto}"></td>
+        <td th:text="${edad}"></td>
+        <td th:text="${tipoEdad}"></td>
+    </tr>
+    </table>
+
+    <p th:if="${edad>=18}">
+        ✅ Puede acceder a contenido para mayores de 18
+    </p>
+    <p th:unless="${edad>=18}">
+        ❌NO PUEDE acceder a contenido para mayores de 18
+    </p>
+
+
+</body>
+</html>
