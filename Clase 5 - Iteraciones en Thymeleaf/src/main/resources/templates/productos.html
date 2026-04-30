@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+
+    <style>
+        .tabla-contenedor {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .tabla-contenedor h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .tabla-moderna {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabla-moderna thead {
+            background: linear-gradient(135deg, #f07c00, #ff9f40);
+            color: white;
+        }
+
+        .tabla-moderna th {
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .tabla-moderna td {
+            padding: 12px 14px;
+            color: #444;
+        }
+
+        .tabla-moderna tbody tr {
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+            transition: all 0.2s ease;
+        }
+
+        .tabla-moderna tbody tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .tabla-moderna tbody tr:hover {
+            background-color: #fff3e6;
+            transform: scale(1.01);
+        }
+
+        .precio {
+            font-weight: bold;
+            color: #f07c00;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .tabla-moderna thead {
+                display: none;
+            }
+
+            .tabla-moderna,
+            .tabla-moderna tbody,
+            .tabla-moderna tr,
+            .tabla-moderna td {
+                display: block;
+                width: 100%;
+            }
+
+            .tabla-moderna tr {
+                margin-bottom: 15px;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                padding: 10px;
+            }
+
+            .tabla-moderna td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            .tabla-moderna td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                width: 45%;
+                text-align: left;
+                font-weight: bold;
+                color: #666;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="tabla-contenedor">
+    <h1>Lista de Productos</h1>
+
+    <table class="tabla-moderna">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Precio</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="producto:${listaProductos}">
+            <td th:text="${producto.id}" data-label="ID"></td>
+            <td th:text="${producto.nombre}" data-label="Nombre"></td>
+            <td th:text="${producto.marca}" data-label="Marca"></td>
+            <td th:text="'$ ' + ${producto.precio}" data-label="Precio" class="precio"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
