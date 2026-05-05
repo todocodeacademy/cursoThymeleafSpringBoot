@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+</head>
+<body>
+
+<div th:replace="~{fragments::header}"></div>
+
+<main style="padding: 30px; text-align: center;">
+    <h2>Bienvenido al sistema</h2>
+    <p>Esta aplicación permite visualizar un listado dinámico de productos utilizando Thymeleaf.</p>
+    <p>Además, reutiliza un encabezado y un pie de página mediante fragmentos.</p>
+
+    <div th:insert="~{fragments::msjeTodoCoders}"></div>
+
+    <a th:href="@{/productos}"
+       style="display: inline-block; margin-top: 20px; padding: 12px 20px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 8px;">
+        Ir al listado de productos
+    </a>
+</main>
+
+<div th:replace="~{fragments::footer}"></div>
+
+</body>
+</html>
