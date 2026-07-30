@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario de producto | Ferretería</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="encabezado">
+    <div class="contenedor">
+        <h1>Ferretería</h1>
+        <p>Sistema de gestión de productos</p>
+    </div>
+</header>
+
+<main class="contenedor">
+
+    <section class="tarjeta formulario">
+
+        <div class="barra-superior">
+            <div>
+                <h2 th:text="${titulo}"></h2>
+                <p>Completá los datos del producto.</p>
+            </div>
+
+            <a class="boton boton-secundario"
+               th:href="@{/productos}">
+                Volver
+            </a>
+        </div>
+
+        <div class="mensaje-error"
+            th:if="${error!=null}"
+            th:text="${error}">
+        </div>
+
+        <form th:action="@{/productos/crear}"
+              th:object="${producto}"
+              method="post">
+
+            <input type="hidden"
+                   id="codProd"
+                   name="codProd" th:field="*{codProducto}">
+
+            <div class="grilla">
+
+                <div class="campo">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre"
+                           name="nombre"
+                           type="text"
+                            th:field="*{nombre}">
+                </div>
+
+                <div class="campo">
+                    <label for="marca">Marca</label>
+                    <input id="marca"
+                           name="marca"
+                           type="text"
+                    th:field="*{marca}">
+                </div>
+
+                <div class="campo">
+                    <label for="categoria">Categoría</label>
+                    <input id="categoria"
+                           name="categoria"
+                           type="text"
+                    th:field="*{categoria}">
+                </div>
+
+                <div class="campo">
+                    <label for="precio">Precio</label>
+                    <input id="precio"
+                           name="precio"
+                           type="number"
+                           step="0.01"
+                    th:field="*{precio}">
+                </div>
+
+                <div class="campo">
+                    <label for="stock">Stock</label>
+                    <input id="stock"
+                           name="stock"
+                           type="number"
+                    th:field="*{stock}">
+                </div>
+
+                <div class="campo campo-completo">
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion"
+                              name="descripcion"
+                              rows="5"
+                                th:field="*{descripcion}">
+
+                    </textarea>
+                </div>
+
+            </div>
+
+            <button type="submit"
+                    class="boton boton-principal">
+                Guardar producto
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Productos | Ferretería</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header class="encabezado">
+    <div class="contenedor">
+        <h1>Ferretería</h1>
+        <p>Sistema de gestión de productos</p>
+    </div>
+</header>
+
+<main class="contenedor">
+
+    <section class="barra-superior">
+        <div>
+            <h2>Productos registrados</h2>
+            <p>Listado general de productos disponibles.</p>
+        </div>
+
+        <a class="boton boton-principal" th:href="@{/productos/nuevo}">
+            Nuevo producto
+        </a>
+    </section>
+
+    <section class="tarjeta" th:if="${!productos.isEmpty()}">
+
+        <div class="tabla-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="producto : ${productos}">
+
+                    <td th:text="${producto.codProducto}"></td>
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="${producto.marca}"></td>
+                    <td th:text="${producto.categoria}"></td>
+                    <td th:text="${producto.precio}"></td>
+                    <td th:text="${producto.stock}"></td>
+                    <td th:text="${producto.descripcion}"></td>
+
+                    <td class="acciones">
+                        <a class="boton boton-editar"
+                           th:href="@{/productos/editar/{codProd}(codProd=${producto.codProducto})}">
+                            Editar
+                        </a>
+
+                        <form th:action="@{/productos/eliminar/{codProd}(codProd=${producto.codProducto})}"
+                              method="post"
+                              onsubmit="return confirm('¿Deseás eliminar realmente este producto?')"
+                        >
+                            <button type="submit"
+                                    class="boton boton-eliminar">
+                                Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <!-- Estado vacío (eliminá esta sección cuando haya productos) -->
+    <section class="tarjeta estado-vacio"
+        th:if="${productos.isEmpty()}">
+        <h3>No hay productos registrados</h3>
+        <p>Utilizá el botón "Nuevo Producto" para agregar uno</p>
+    </section>
+
+</main>
+
+</body>
+</html>
